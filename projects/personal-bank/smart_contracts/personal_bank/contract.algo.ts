@@ -47,7 +47,7 @@ export class PersonalBank extends Contract {
   @abimethod()
   public withdraw() {
     const [depositedAmount, isDeposited] = this.depositors(Txn.sender).maybe()
-    assert(isDeposited, 'No deposits found for this account')
+    assert(!isDeposited, 'No deposits found for this account')
 
     const result = itxn
       .payment({
